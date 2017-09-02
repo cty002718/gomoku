@@ -20,7 +20,8 @@ function init_draw() {
     var ctx = canvas.getContext("2d");
 
     ctx.beginPath();
-    ctx.fillStyle = '#ffc411';
+    ctx.clearRect(0, 0, 600, 600);
+    ctx.fillStyle = '#ffaf1a';
     ctx.fillRect(20, 20, 560, 560);
     ctx.lineWidth = 2;
     for (var i = 0;i <= 15; i++) {
@@ -35,6 +36,7 @@ function init_draw() {
 function deal_click(evt) {
     var x = evt.pageX;
     var y = evt.pageY;
+
     for (var i = 0; i < 15; i++)
         for (var j = 0; j < 15; j++) {
             if (used[i][j] !== 0) {
@@ -58,6 +60,7 @@ function draw_stone(locx, locy, i, j) {
     var ctx = canvas.getContext("2d");
     var which = document.getElementById("turn");
     ctx.beginPath();
+    ctx.strokeStyle = 'black';
     if (turn === 1) {
         ctx.fillStyle = 'black';
         which.innerHTML = "該白棋下";
@@ -67,6 +70,8 @@ function draw_stone(locx, locy, i, j) {
     }
     ctx.arc(locx, locy, 18, 0, Math.PI * 2, true);
     ctx.fill();
+    ctx.stroke();
+
     setTimeout(function () {
         used[i][j] = turn;
         var win = isGameOver();
