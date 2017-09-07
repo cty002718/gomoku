@@ -3,153 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>五子棋</title>
-    <script src="draw.js"></script>
-    <style>
-        #boardLayer {
-            position: absolute;
 
-            z-index: 1;
-        }
-
-        #stoneLayer {
-            position: absolute;
-            z-index: 2;
-        }
-        #turn {
-            position: absolute;
-            top: 300px;
-            left: 770px;
-            font-family: sana;
-        }
-        #myButton {
-            position: absolute;
-            top: 220px;
-            left: 800px;
-        }
-
-        #back {
-            position: absolute;
-            top: 160px;
-            left:815px;
-            display: block;
-        }
-
-        .myButton {
-
-            -moz-box-shadow:inset 0px 0px 0px 0px #ffffff;
-            -webkit-box-shadow:inset 0px 0px 0px 0px #ffffff;
-            box-shadow:inset 0px 0px 0px 0px #ffffff;
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
-            background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-            background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-            background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-            background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
-            background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
-            background-color:#f9f9f9;
-            -moz-border-radius:13px;
-            -webkit-border-radius:13px;
-            border-radius:13px;
-            border:2px solid #dcdcdc;
-            display:inline-block;
-            cursor:pointer;
-            color:#666666;
-            font-family:Arial;
-            font-size:15px;
-            font-weight:bold;
-            padding:15px 21px;
-            text-decoration:none;
-            text-shadow:0px 0px 0px #ffffff;
-        }
-        .myButton:hover {
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
-            background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-            background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-            background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-            background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
-            background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
-            background-color:#e9e9e9;
-        }
-
-        .back {
-            -moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
-            -webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
-            box-shadow:inset 0px 1px 0px 0px #f5978e;
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f));
-            background:-moz-linear-gradient(top, #f24537 5%, #c62d1f 100%);
-            background:-webkit-linear-gradient(top, #f24537 5%, #c62d1f 100%);
-            background:-o-linear-gradient(top, #f24537 5%, #c62d1f 100%);
-            background:-ms-linear-gradient(top, #f24537 5%, #c62d1f 100%);
-            background:linear-gradient(to bottom, #f24537 5%, #c62d1f 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f24537', endColorstr='#c62d1f',GradientType=0);
-            background-color:#f24537;
-            -moz-border-radius:5px;
-            -webkit-border-radius:5px;
-            border-radius:5px;
-            border:1px solid #d02718;
-            display:inline-block;
-            cursor:pointer;
-            color:#ffffff;
-            font-family:Arial;
-            font-size:15px;
-            font-weight:bold;
-            padding:8px 23px;
-            text-decoration:none;
-            text-shadow:0px 1px 0px #810e05;
-        }
-        .back:hover {
-            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537));
-            background:-moz-linear-gradient(top, #c62d1f 5%, #f24537 100%);
-            background:-webkit-linear-gradient(top, #c62d1f 5%, #f24537 100%);
-            background:-o-linear-gradient(top, #c62d1f 5%, #f24537 100%);
-            background:-ms-linear-gradient(top, #c62d1f 5%, #f24537 100%);
-            background:linear-gradient(to bottom, #c62d1f 5%, #f24537 100%);
-            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#c62d1f', endColorstr='#f24537',GradientType=0);
-            background-color:#c62d1f;
-        }
-
-        #next {
-            display: None;
-            position: absolute;
-            left: 907px;
-            top: 100px;
-            width: 0;
-            height: 0;
-            border-width: 20px 0 20px 35px;
-            border-style: solid;
-            border-color: transparent transparent transparent #095;
-        }
-
-        #next:hover {
-            border-color: transparent transparent transparent #992437 ;
-        }
-
-        #pre {
-            display: None;
-            position: absolute;
-            left: 770px;
-            top: 100px;
-            width: 0;
-            height: 0;
-            border-width: 20px 35px 20px 0;
-            border-style: solid;
-            border-color: transparent #095 transparent transparent;
-        }
-        #pre:hover {
-            border-color: transparent #992437 transparent transparent ;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style/text.css">
+    <link rel="stylesheet" type="text/css" href="style/draw.css">
+    <link rel="stylesheet" type="text/css" href="style/button.css">
+    <link rel="stylesheet" type="text/css" href="style/homePage.css">
+    <script src="js/socket.js"></script>
+    <script src="js/logic.js"></script>
+    <script src="js/text.js"></script>
+    <script src="js/draw.js"></script>
+    <script src="js/homePage.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
 
 </head>
 <body>
+
+<div id="menu">
+    <input type="button" class="homePageButton" id="button1" value="雙人對戰（離線）"><br><br><br>
+    <input type="button" class="homePageButton" id="button2" value="雙人對戰（線上）"><br>
+</div>
+
 <canvas id="boardLayer"></canvas>
 <canvas id="stoneLayer"></canvas>
-<h1 id="turn"></h1>
-<div id="next" onclick="controller.dealNext()"></div>
-<div id="pre" onclick="controller.dealPre()"></div>
-<input id="myButton" class = "myButton" type="button" onclick="controller.init()" value="重新開始">
-<input id="back" class="back" type="button" onclick="controller.dealBack()" value="悔棋">
+
+<input id="reStart" type="button"  value="重新開始">
+<input id="back" type="button"  value="悔棋">
+<h1 id="info"></h1>
+
+<div id="userid"></div>
+<div id="numOfPeople"></div>
+<h3 id="status"></h3>
+
+<div id="list">
+    <h3>其他訪客列表</h3>
+    <ul></ul>
+</div>
+
+<div id="next"></div>
+<div id="pre"></div>
+
 </body>
 </html>
 
